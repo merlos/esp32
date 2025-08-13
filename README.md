@@ -13,6 +13,25 @@ I have used two microcontrollers:
 
 Note that they're not fully documented. 
 
-# License
+## Install arudino-cli in MacOS
+
+```bash
+brew install arduino-cli
+```
+
+Create this arduino-cli.json
+```
+board_manager:
+  additional_urls:
+    - https://dl.espressif.com/dl/package_esp32_index.json
+```
+Then run:
+```
+arduino-cli core update-index --config-file arduino-cli.yaml
+arduino-cli config set network.connection_timeout 600s
+arduino-cli core install esp32:esp32
+```
+
+## License
 
 MIT
