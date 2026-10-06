@@ -1,0 +1,77 @@
+# Playing with ESP32 microcontroller
+
+These are toy microprojects for testing the use of a ESP32 microcontroller.
+Nothing you cannot find in any example library.
+
+They work with the Arduino IDE.
+
+The libraries/ folder are external libraries. They are external libraries managed by the IDE, I have included them just for MY convenience. 
+
+I have used two microcontrollers:
+* ESP32
+* ESP32S3-WROOM1
+
+Note that they're not fully documented. 
+
+## Install arudino-cli in MacOS
+
+```bash
+brew install arduino-cli
+```
+
+## Install arduino-cli in Arch Linux
+
+```bash
+pacman install -Sy arduino cli
+```
+
+Create this arduino-cli.yaml
+```
+board_manager:
+  additional_urls:
+    - https://dl.espressif.com/dl/package_esp32_index.json
+```
+
+ You can edit the default config. To find out the default config file 
+```bash
+arduino-cli config dum --verbose
+
+NFO[0000] arduino-cli version 1.4.1                    
+INFO[0000] Using config file: /home/username/.arduino15/arduino-cli.yaml 
+INFO[0000] Executing arduino-cli config dump          
+{}
+
+```
+
+
+Then run:
+```
+# note if you edited the default config file you don't need the
+# --config-file
+arduino-cli core update-index --config-file arduino-cli.yaml
+# I had issues because the download took too much
+arduino-cli config set network.connection_timeout 600s
+arduino-cli core install esp32:esp32
+```
+## Install Arduino IDE in Arch
+
+```bash
+# Fast
+yay -Sy arduino-ide-bin
+# Slow (has to download the repos and build)
+yay -Sy arduino-ide
+
+```
+
+Launch in Hyprland
+If you're using Hyprland you may need to launch the app
+```bash
+arduino-ide --ozone-platform=x11
+```
+
+```
+
+
+## License
+
+MIT

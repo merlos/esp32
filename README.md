@@ -19,19 +19,75 @@ Note that they're not fully documented.
 brew install arduino-cli
 ```
 
-Create this arduino-cli.json
+## Install arduino-cli in Arch Linux
+
+```bash
+pacman install -Sy arduino cli
+```
+
+Create this arduino-cli.yaml
 ```
 board_manager:
   additional_urls:
     - https://dl.espressif.com/dl/package_esp32_index.json
 ```
+
+ You can edit the default config. To find out the default config file 
+```bash
+arduino-cli config dum --verbose
+
+NFO[0000] arduino-cli version 1.4.1                    
+INFO[0000] Using config file: /home/username/.arduino15/arduino-cli.yaml 
+INFO[0000] Executing arduino-cli config dump          
+{}
+
+```
+
+
 Then run:
 ```
+# note if you edited the default config file you don't need the
+# --config-file
 arduino-cli core update-index --config-file arduino-cli.yaml
+# I had issues because the download took too much
 arduino-cli config set network.connection_timeout 600s
 arduino-cli core install esp32:esp32
 ```
+## Install Arduino IDE in Arch
 
+```bash
+# Fast
+yay -Sy arduino-ide-bin
+# Slow (has to download the repos and build)
+yay -Sy arduino-ide
+
+```
+
+Launch in Hyprland
+If you're using Hyprland you may need to launch the app
+```bash
+arduino-ide --ozone-platform=x11
+```
+
+You need to provide access to the user that runs the ide to the uucp
+and lock
+```
+sudo gpasswd -a $USER uucp
+sudo gpasswd -a $USER lock
+ 
+ 
+```
+
+otherwise you'll get this error
+
+```
+A fatal error occurred: Could not open /dev/ttyUSB0, the port is busy
+or doesn't exist.
+([Errno 13] could not open port /dev/ttyUSB0: [Errno 13] Permission
+denied: '/dev/ttyUSB0')
+
+Hint: Try to add user into dialout or uucp group.
+```
 ## License
 
 MIT

@@ -27,6 +27,7 @@ void blink_delay() {
   // Wait for 1 second
   delay(1000);
   
+}
 
 void setup() {
 
@@ -34,7 +35,7 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
   
   // Initialize serial communication
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   Serial.println("DHT22 Temperature & Humidity Sensor");
   Serial.println("====================================");

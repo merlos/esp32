@@ -16,6 +16,7 @@
 Adafruit_BMP085 bmp;
 
 void setup() {
+  delay(1000);
   // Initialize serial communication
   Serial.begin(115200);
   Serial.println("BMP180 Sensor Test");
